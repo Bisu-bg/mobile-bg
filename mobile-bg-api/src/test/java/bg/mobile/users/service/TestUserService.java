@@ -3,8 +3,13 @@ package bg.mobile.users.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import bg.mobile.exceptions.HttpForbiddenException;
+import bg.mobile.exceptions.HttpUnauthorizedException;
 import bg.mobile.users.model.UserModel;
+import bg.mobile.users.rest.LoginRequest;
+import bg.mobile.users.rest.LoginResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +43,12 @@ public class TestUserService {
 
     final UserModel created = userService.registerUser(model);
 
-    final UserModel ivan = userService.loginUser(created.getUsername(), "root");
-    assertNull(ivan);
+    assertThrows(
+        HttpUnauthorizedException.class,
+        () -> userService.loginUser(created.getUsername(), "root"));
 
-    final UserModel petko = userService.loginUser(created.getUsername(), created.getPassword());
-    assertNotNull(petko);
+    final LoginResponse petkoLogin = userService.loginUser(created.getUsername(), model.getPassword());
+    assertNotNull(petkoLogin.getUserModel());
+    assertNotNull(petkoLogin.getJwtToken());
   }
 }
