@@ -30,13 +30,4 @@ public class UserController {
     userService.registerUser(user);
   }
 
-//
-//  @PostMapping("/login")
-//  public void loginUser(@RequestBody final LoginRequest request) {
-//    final String encodedPassword = bCryptPasswordEncoder.encode(request.getPassword());
-//
-//    request.setPassword(encodedPassword);
-//
-//    userService.loginUser(request.getUsername(), request.getPassword());
-//  }
 }
