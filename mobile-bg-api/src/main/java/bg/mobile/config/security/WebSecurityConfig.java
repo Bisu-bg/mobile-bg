@@ -1,7 +1,7 @@
 package bg.mobile.config.security;
 
-import static bg.mobile.config.security.SecurityConstants.LOGIN_URL;
-import static bg.mobile.config.security.SecurityConstants.REGISTER_URL;
+import static bg.mobile.config.security.SecurityConstants.CARS_URL;
+import static bg.mobile.config.security.SecurityConstants.USERS_URL;
 
 import bg.mobile.config.security.jwt.JWTAuthorizationFilter;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(final HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable().authorizeRequests()
-        .antMatchers(HttpMethod.POST, REGISTER_URL, LOGIN_URL).permitAll()
+        .antMatchers(HttpMethod.POST, USERS_URL, CARS_URL).permitAll()
         .anyRequest().authenticated()
         .and()
         .addFilter(new JWTAuthorizationFilter(authenticationManager()))
@@ -31,7 +31,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   public void configure(final WebSecurity web) {
     web.ignoring().antMatchers(
-        "/cars/all",
         "/configuration/ui",
         "/configuration/**",
         "/actuator/**",
