@@ -4,16 +4,12 @@ import static bg.mobile.config.security.SecurityConstants.LOGIN_URL;
 import static bg.mobile.config.security.SecurityConstants.REGISTER_URL;
 
 import bg.mobile.config.security.jwt.JWTAuthorizationFilter;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -31,8 +27,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   public void configure(final WebSecurity web) {
     web.ignoring().antMatchers(
-        "/users/register",
-        "/users/login",
         "/cars/all",
         "/configuration/ui",
         "/configuration/**",
@@ -41,13 +35,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         "/swagger-resources/**",
         "/swagger-ui.html",
         "/webjars/**");
-  }
-
-  @Bean
-  public CorsConfigurationSource corsConfigurationSource() {
-    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
-    return source;
   }
 
 }
