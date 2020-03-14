@@ -1,5 +1,7 @@
 package bg.mobile.users.service.impl;
 
+import static bg.mobile.config.security.PasswordEncoder.checkPassword;
+import static bg.mobile.config.security.PasswordEncoder.hashPassword;
 import static bg.mobile.config.security.SecurityConstants.EXPIRATION_TIME;
 import static bg.mobile.config.security.SecurityConstants.SECRET;
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
@@ -34,6 +36,8 @@ public class UserServiceImpl implements UserService {
   public UserModel registerUser(final UserModel model) {
     log.info("Register user BEGIN: {}", model);
 
+    model.setPassword(hashPassword(model.getPassword()));
+
     final User user = userConverter.convertToEntity(model);
 
     final User saved = userRepository.save(user);
@@ -47,8 +51,9 @@ public class UserServiceImpl implements UserService {
   public LoginResponse loginUser(final String username, final String password) {
     log.info("Login user BEGIN: {}", username);
 
-    final UserModel user = getUserModel(username, password);
-    if (user == null) {
+    final User user = getUser(username);
+
+    if (!checkPassword(password, user.getPassword())) {
       throw new HttpUnauthorizedException();
     }
 
@@ -57,18 +62,20 @@ public class UserServiceImpl implements UserService {
         .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
         .sign(HMAC512(SECRET.getBytes()));
 
-    final LoginResponse response = new LoginResponse(user, jwtToken);
+    final UserModel userModel = userConverter.convertToModel(user);
+
+    final LoginResponse response = new LoginResponse(userModel, jwtToken);
 
     log.info("Login user END: {}", response);
 
     return response;
   }
 
-  private UserModel getUserModel(final String username, final String password) {
+  private User getUser(final String username) {
     final Optional<User> userOpt = userRepository
-        .findByUsernameAndPassword(username, password);
+        .findByUsername(username);
 
-    return userOpt.map(userConverter::convertToModel).orElse(null);
+    return userOpt.orElse(null);
   }
 
 }

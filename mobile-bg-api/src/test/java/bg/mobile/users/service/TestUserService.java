@@ -32,7 +32,6 @@ public class TestUserService {
     final UserModel created = userService.registerUser(model);
 
     assertEquals(model.getUsername(), created.getUsername());
-    assertEquals(model.getPassword(), created.getPassword());
     assertEquals(model.getFirstName(), created.getFirstName());
     assertEquals(model.getLastName(), created.getLastName());
   }
@@ -47,7 +46,7 @@ public class TestUserService {
         HttpUnauthorizedException.class,
         () -> userService.loginUser(created.getUsername(), "root"));
 
-    final LoginResponse petkoLogin = userService.loginUser(created.getUsername(), model.getPassword());
+    final LoginResponse petkoLogin = userService.loginUser(created.getUsername(), "password");
     assertNotNull(petkoLogin.getUserModel());
     assertNotNull(petkoLogin.getJwtToken());
   }

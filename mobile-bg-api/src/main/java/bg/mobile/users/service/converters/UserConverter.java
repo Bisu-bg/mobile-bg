@@ -15,7 +15,6 @@ public class UserConverter {
     final UserModel model = new UserModel();
     model.setId(user.getId());
     model.setUsername(user.getUsername());
-    model.setPassword(user.getPassword());
     model.setFirstName(user.getFirstName());
     model.setLastName(user.getLastName());
 
