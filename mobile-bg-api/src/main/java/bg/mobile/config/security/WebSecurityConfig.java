@@ -21,7 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(final HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable().authorizeRequests()
-        .antMatchers(HttpMethod.POST, USERS_URL, CARS_URL).permitAll()
+        .antMatchers(HttpMethod.POST, USERS_URL).permitAll()
         .anyRequest().authenticated()
         .and()
         .addFilter(new JWTAuthorizationFilter(authenticationManager()))
@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   public void configure(final WebSecurity web) {
     web.ignoring().antMatchers(
-        "/cars/all",
+        "/cars/**",
         "/configuration/ui",
         "/configuration/**",
         "/actuator/**",
