@@ -1,6 +1,5 @@
 package bg.mobile.config.security;
 
-import static bg.mobile.config.security.SecurityConstants.CARS_URL;
 import static bg.mobile.config.security.SecurityConstants.USERS_URL;
 
 import bg.mobile.config.security.jwt.JWTAuthorizationFilter;
