@@ -31,6 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   public void configure(final WebSecurity web) {
     web.ignoring().antMatchers(
+        "/cars/all",
         "/configuration/ui",
         "/configuration/**",
         "/actuator/**",
