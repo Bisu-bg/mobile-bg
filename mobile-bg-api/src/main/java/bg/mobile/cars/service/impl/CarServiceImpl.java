@@ -5,15 +5,10 @@ import bg.mobile.cars.entities.CarRepository;
 import bg.mobile.cars.models.CarModel;
 import bg.mobile.cars.service.CarService;
 import bg.mobile.cars.service.converters.CarConverter;
-import bg.mobile.extras.entities.Extra;
+import bg.mobile.exceptions.HttpBadRequestException;
 import bg.mobile.extras.service.ExtraService;
-import bg.mobile.users.service.converters.UserConverter;
-import com.mysql.cj.util.StringUtils;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,14 +19,12 @@ public class CarServiceImpl implements CarService {
 
   private final CarRepository carRepository;
   private final CarConverter carConverter;
-  private final ExtraService extraService;
 
   public CarServiceImpl(final CarRepository carRepository,
       final CarConverter carConverter,
       final ExtraService extraService) {
     this.carRepository = carRepository;
     this.carConverter = carConverter;
-    this.extraService = extraService;
   }
 
   @Transactional
@@ -63,6 +56,10 @@ public class CarServiceImpl implements CarService {
   @Override
   public CarModel updateCar(final CarModel model) {
     log.info("Update car BEGIN: {}", model);
+
+    if (!carRepository.existsById(model.getId())) {
+      throw new HttpBadRequestException("Car entity does not exist for ID: " + model.getId());
+    }
 
     final Car car = carConverter.convertToEntity(model);
 

@@ -20,4 +20,9 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     response.sendError(HttpStatus.FORBIDDEN.value());
   }
 
+  @ExceptionHandler(HttpBadRequestException.class)
+  public void httpBadRequestException(final HttpServletResponse response) throws IOException {
+    response.sendError(HttpStatus.BAD_REQUEST.value());
+  }
+
 }
