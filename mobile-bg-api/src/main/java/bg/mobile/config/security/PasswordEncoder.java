@@ -13,7 +13,6 @@ public class PasswordEncoder {
   }
 
   public static boolean checkPassword(final String plainTextPassword, final String storedHash) {
-
     if (null == storedHash || !storedHash.startsWith("$2a$")) {
       throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
     }
