@@ -58,7 +58,7 @@ public class CarServiceImpl implements CarService {
     log.info("Update car BEGIN: {}", model);
 
     if (!carRepository.existsById(model.getId())) {
-      throw new HttpBadRequestException("Car entity does not exist for ID: " + model.getId());
+      throw new HttpBadRequestException("Car entity does not exist for id: " + model.getId());
     }
 
     final Car car = carConverter.convertToEntity(model);
