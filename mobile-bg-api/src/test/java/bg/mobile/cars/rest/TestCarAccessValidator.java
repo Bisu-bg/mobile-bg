@@ -37,23 +37,14 @@ public class TestCarAccessValidator {
   @Test
   public void testCarAccessValidator() {
     final CarModel car = buildCar();
-    final UserModel user = car.getUser();
-
-    carAccessValidator.validateUserCanEditCar(user, car);
-
-    final UserModel wrongUser = new UserModel("bad id", "ivan", "ivanov", "ivan", "ivanov");
-
-    assertThrows(
-        HttpForbiddenException.class,
-        () -> carAccessValidator.validateUserCanEditCar(wrongUser, car));
 
     final CarModel created = carService.createCar(car);
 
-    carAccessValidator.validateUserCanEditCar(user, created);
+    carAccessValidator.validateUserCanEditCar(created.getUser().getId(), created.getId());
 
     assertThrows(
         HttpForbiddenException.class,
-        () -> carAccessValidator.validateUserCanEditCar(wrongUser, created));
+        () -> carAccessValidator.validateUserCanEditCar("bad id", created.getId()));
   }
 
   private CarModel buildCar() {

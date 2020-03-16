@@ -15,15 +15,6 @@ public class CarAccessValidator {
     this.carService = carService;
   }
 
-  void validateUserCanEditCar(final UserModel user, final CarModel car) {
-    final String userId = user.getId();
-    final String carUserId = car.getUser().getId();
-
-    if ((userId == null || carUserId == null) || !userId.equals(carUserId)) {
-      throw new HttpForbiddenException();
-    }
-  }
-
   void validateUserCanEditCar(final String userId, final String carId) {
     if (userId == null || carId == null) {
       throw new HttpForbiddenException();

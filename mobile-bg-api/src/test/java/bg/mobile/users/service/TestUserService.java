@@ -5,10 +5,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import bg.mobile.exceptions.HttpForbiddenException;
 import bg.mobile.exceptions.HttpUnauthorizedException;
 import bg.mobile.users.model.UserModel;
-import bg.mobile.users.rest.LoginRequest;
 import bg.mobile.users.rest.LoginResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,7 +45,7 @@ public class TestUserService {
         () -> userService.loginUser(created.getUsername(), "root"));
 
     final LoginResponse petkoLogin = userService.loginUser(created.getUsername(), "password");
-    assertNotNull(petkoLogin.getUserModel());
+    assertNotNull(petkoLogin.getUser());
     assertNotNull(petkoLogin.getJwtToken());
   }
 }
