@@ -23,7 +23,9 @@ public class CarAccessValidator {
     final CarModel car = carService.getById(carId);
 
     if (!userId.equals(car.getUser().getId())) {
-      throw new HttpForbiddenException();
+      final String message = String
+          .format("Car with id: %s does not belong to user with id: %s", carId, userId);
+      throw new HttpForbiddenException(message);
     }
   }
 
