@@ -15,6 +15,8 @@ export default function MaterialTableDemo() {
   const { currentUser, userId, accessToken, firstName, lastName } = useSelector(state => state.userSession);
   // Contains list with all cars
   const [allCars, setCars] = React.useState(cars)
+
+  const [selsectedRow, setSelectedRow] =React.useState([])
  
   /** Create request to get all Cars */
   useEffect(() => {
@@ -54,11 +56,16 @@ export default function MaterialTableDemo() {
 
   return (
     <div>
+      {console.log('selsectedRow ',selsectedRow)}
       <Header/>
       <MaterialTable
         title="Simple Cars"
         columns={tableTitleColumns}
         data={allCars}
+        options={{
+          selection: true
+        }}
+        onSelectionChange={(rows) => setSelectedRow(rows) }
         editable={{
           onRowAdd: currentUser ? newData =>
             new Promise(resolve => {

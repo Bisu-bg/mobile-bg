@@ -46,6 +46,7 @@ export default function LoginPage() {
    * @param {Object} event - Object which contains input field value
    */
   const onChangePassword = event => {
+    console.log(event.target.value)
     setPassword(event.target.value);
   };
    /** Creat a login request and redirect 

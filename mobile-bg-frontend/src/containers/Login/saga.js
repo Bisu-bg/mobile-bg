@@ -22,6 +22,7 @@ function* authorizeUser(api, username, password) {
   var response;
   try {
     response = yield call(api.login, username, password);
+    console.log('response',response)
     const { jwtToken } = response.data;
     const successResponse = response.data.userModel
     yield put(loginSuccess(successResponse.username, successResponse.id ,jwtToken, successResponse.firstName, successResponse.lastName));
