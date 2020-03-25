@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoginResponse {
 
-  private UserModel userModel;
+  private UserModel user;
   private String jwtToken;
 }

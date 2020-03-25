@@ -37,7 +37,7 @@ public class CarController {
 
   @PutMapping
   public CarModel updateCar(@RequestBody final CarModel car) {
-    carAccessValidator.validateUserCanEditCar(car.getUser(), car);
+    carAccessValidator.validateUserCanEditCar(car.getUser().getId(), car.getId());
 
     return carService.updateCar(car);
   }

@@ -24,7 +24,7 @@ function* authorizeUser(api, username, password) {
     response = yield call(api.login, username, password);
     console.log('response',response)
     const { jwtToken } = response.data;
-    const successResponse = response.data.userModel
+    const successResponse = response.data.user
     yield put(loginSuccess(successResponse.username, successResponse.id ,jwtToken, successResponse.firstName, successResponse.lastName));
     yield put(redirect('/cars'));
   } catch (error) {
