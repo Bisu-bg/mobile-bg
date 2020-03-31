@@ -22,7 +22,8 @@ export default function* getCarsSaga(api) {
         model,
         price,
         user,
-        year
+        year,
+        userId
       } = editCarRequest.payload;
 
       console.log('dada',accessToken,
@@ -57,7 +58,8 @@ export default function* getCarsSaga(api) {
         model,
         price,
         user,
-        year
+        year,
+        userId
       );
     }
   }
@@ -66,7 +68,7 @@ export default function* getCarsSaga(api) {
 /** Create editCar request
  * @return {any} Object with updated car 
  */
-function* editCar(api,accessToken,city,color,condition,engineType,extras,gearBox,horsePower,id,make,mileage,model,price,user,year) {
+function* editCar(api,accessToken,city,color,condition,engineType,extras,gearBox,horsePower,id,make,mileage,model,price,user,year,userId) {
   var response;
 
   try {
@@ -86,7 +88,8 @@ function* editCar(api,accessToken,city,color,condition,engineType,extras,gearBox
       model,
       price,
       user,
-      year
+      year,
+      userId
       );
     yield put(editCarSuccess(response.data));
   } catch (error) {

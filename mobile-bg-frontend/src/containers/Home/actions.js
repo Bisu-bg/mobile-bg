@@ -100,7 +100,7 @@ export function getCarsError(errorMessage) {
   * @param {string} year - Car's year
   * @return {any} will return updated car object
   */
- export function editCar(accessToken,city,color,condition,engineType,extras,gearBox,horsePower,id,make,mileage,model,price,user,year) {
+ export function editCar(accessToken,city,color,condition,engineType,extras,gearBox,horsePower,id,make,mileage,model,price,user,year,userId) {
   return {
     type: EDIT_CAR_REQUEST,
     payload: {
@@ -118,7 +118,8 @@ export function getCarsError(errorMessage) {
       model,
       price,
       user,
-      year
+      year,
+      userId
     },
   };
 }

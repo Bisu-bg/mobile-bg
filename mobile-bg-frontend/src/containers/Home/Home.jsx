@@ -31,7 +31,7 @@ export default function MaterialTableDemo() {
     setCars(prevState => {
       const data = [...prevState];
       data[data.indexOf(oldData)] = newData;
-      dispatch(editCar(accessToken,city,color,condition,engineType,extras,gearBox,horsePower,id,make,mileage,model,price,user,year)) 
+      dispatch(editCar(accessToken,city,color,condition,engineType,extras,gearBox,horsePower,id,make,mileage,model,price,user,year,userId))
       return data;
     });
   }   
