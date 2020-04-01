@@ -1,2 +1,2 @@
 # mobile-bg
-mobile-bg
+mobile-bg.
