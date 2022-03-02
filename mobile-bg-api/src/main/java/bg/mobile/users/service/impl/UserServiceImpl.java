@@ -16,21 +16,18 @@ import bg.mobile.users.service.converters.UserConverter;
 import com.auth0.jwt.JWT;
 import java.util.Date;
 import java.util.Optional;
+
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 @Service
 @Log4j2
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
   private final UserConverter userConverter;
-
-  public UserServiceImpl(final UserRepository userRepository,
-      final UserConverter userConverter) {
-    this.userRepository = userRepository;
-    this.userConverter = userConverter;
-  }
 
   @Override
   public UserModel registerUser(final UserModel model) {
@@ -77,5 +74,4 @@ public class UserServiceImpl implements UserService {
 
     return userOpt.orElse(null);
   }
-
 }

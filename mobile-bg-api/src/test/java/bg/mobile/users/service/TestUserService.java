@@ -1,27 +1,14 @@
 package bg.mobile.users.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
+import bg.mobile.base.BaseTest;
 import bg.mobile.exceptions.HttpUnauthorizedException;
 import bg.mobile.users.model.UserModel;
 import bg.mobile.users.rest.LoginResponse;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.jupiter.api.Test;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@ActiveProfiles("test")
-public class TestUserService {
+import static org.junit.jupiter.api.Assertions.*;
 
-  @Autowired
-  private UserService userService;
+public class TestUserService extends BaseTest {
 
   @Test
   public void testRegisterUser() {

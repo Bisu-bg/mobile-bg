@@ -3,17 +3,14 @@ package bg.mobile.cars.rest;
 import bg.mobile.cars.models.CarModel;
 import bg.mobile.cars.service.CarService;
 import bg.mobile.exceptions.HttpForbiddenException;
-import bg.mobile.users.model.UserModel;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class CarAccessValidator {
 
   private final CarService carService;
-
-  public CarAccessValidator(final CarService carService) {
-    this.carService = carService;
-  }
 
   void validateUserCanEditCar(final String userId, final String carId) {
     if (userId == null || carId == null) {
@@ -28,5 +25,4 @@ public class CarAccessValidator {
       throw new HttpForbiddenException(message);
     }
   }
-
 }

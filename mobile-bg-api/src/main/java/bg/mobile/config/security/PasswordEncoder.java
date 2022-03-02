@@ -4,7 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class PasswordEncoder {
 
-  private static int WORKLOAD = 12;
+  private static final int WORKLOAD = 12;
 
   public static String hashPassword(final String plainTextPassword) {
     final String salt = BCrypt.gensalt(WORKLOAD);
@@ -19,5 +19,4 @@ public class PasswordEncoder {
 
     return BCrypt.checkpw(plainTextPassword, storedHash);
   }
-
 }

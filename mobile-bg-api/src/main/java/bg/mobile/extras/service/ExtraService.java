@@ -7,5 +7,4 @@ public interface ExtraService {
   Extra create(String name);
 
   Extra getByName(String name);
-
 }

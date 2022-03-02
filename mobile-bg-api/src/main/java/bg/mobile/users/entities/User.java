@@ -7,12 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.ToString;
+
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 public class User {
@@ -35,5 +35,4 @@ public class User {
 
   @Column(nullable = false)
   private String lastName;
-
 }

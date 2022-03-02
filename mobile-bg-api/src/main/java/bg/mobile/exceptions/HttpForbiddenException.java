@@ -2,7 +2,7 @@ package bg.mobile.exceptions;
 
 public class HttpForbiddenException extends RuntimeException {
 
-  public HttpForbiddenException(String message) {
+  public HttpForbiddenException(final String message) {
     super(message);
   }
 

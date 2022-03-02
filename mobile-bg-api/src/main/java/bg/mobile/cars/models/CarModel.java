@@ -41,5 +41,4 @@ public class CarModel {
   private UserModel user;
 
   private String extras;
-
 }
