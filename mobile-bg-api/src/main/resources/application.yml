@@ -1,0 +1,10 @@
+server:
+    port: 8083
+spring:
+    datasource:
+        password: monbat
+        url: jdbc:mariadb://localhost:3306/mobile_bg
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: update
