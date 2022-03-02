@@ -9,23 +9,19 @@ import bg.mobile.exceptions.HttpBadRequestException;
 import bg.mobile.extras.service.ExtraService;
 import java.util.List;
 import java.util.Optional;
+
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Log4j2
+@RequiredArgsConstructor
 public class CarServiceImpl implements CarService {
 
   private final CarRepository carRepository;
   private final CarConverter carConverter;
-
-  public CarServiceImpl(final CarRepository carRepository,
-      final CarConverter carConverter,
-      final ExtraService extraService) {
-    this.carRepository = carRepository;
-    this.carConverter = carConverter;
-  }
 
   @Transactional
   @Override

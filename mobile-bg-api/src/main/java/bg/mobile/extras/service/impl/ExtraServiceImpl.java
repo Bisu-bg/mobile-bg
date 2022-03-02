@@ -5,21 +5,18 @@ import bg.mobile.extras.entities.ExtraRepository;
 import bg.mobile.extras.service.ExtraService;
 import bg.mobile.extras.service.converters.ExtraConverter;
 import java.util.Optional;
+
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 @Service
 @Log4j2
+@RequiredArgsConstructor
 public class ExtraServiceImpl implements ExtraService {
 
   private final ExtraConverter extraConverter;
   private final ExtraRepository extraRepository;
-
-  public ExtraServiceImpl(final ExtraConverter extraConverter,
-      final ExtraRepository extraRepository) {
-    this.extraConverter = extraConverter;
-    this.extraRepository = extraRepository;
-  }
 
   @Override
   public Extra create(final String name) {

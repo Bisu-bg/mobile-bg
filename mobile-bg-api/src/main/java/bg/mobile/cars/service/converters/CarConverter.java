@@ -14,19 +14,16 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class CarConverter {
 
   private final UserConverter userConverter;
   private final ExtraService extraService;
-
-  public CarConverter(final UserConverter userConverter,
-      final ExtraService extraService) {
-    this.userConverter = userConverter;
-    this.extraService = extraService;
-  }
 
   public CarModel convertToModel(final Car car) {
     if (car == null) {
@@ -111,5 +108,4 @@ public class CarConverter {
 
     return cars.stream().map(this::convertToModel).collect(toList());
   }
-
 }

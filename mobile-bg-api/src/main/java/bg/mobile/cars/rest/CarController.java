@@ -3,6 +3,8 @@ package bg.mobile.cars.rest;
 import bg.mobile.cars.models.CarModel;
 import bg.mobile.cars.service.CarService;
 import java.util.List;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,16 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/cars")
+@RequiredArgsConstructor
 public class CarController {
 
   private final CarService carService;
   private final CarAccessValidator carAccessValidator;
-
-  public CarController(final CarService carService,
-      final CarAccessValidator carAccessValidator) {
-    this.carService = carService;
-    this.carAccessValidator = carAccessValidator;
-  }
 
   @PostMapping
   public CarModel createCar(@RequestBody final CarModel car) {
@@ -49,5 +46,4 @@ public class CarController {
 
     carService.deleteCar(id);
   }
-
 }

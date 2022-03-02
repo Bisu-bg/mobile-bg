@@ -24,5 +24,4 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
   public void httpBadRequestException(final HttpServletResponse response) throws IOException {
     response.sendError(HttpStatus.BAD_REQUEST.value());
   }
-
 }

@@ -8,5 +8,4 @@ public interface UserService {
   UserModel registerUser(UserModel model);
 
   LoginResponse loginUser(String username, String password);
-
 }
