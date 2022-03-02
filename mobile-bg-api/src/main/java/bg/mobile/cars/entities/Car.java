@@ -1,29 +1,19 @@
 package bg.mobile.cars.entities;
 
-import static bg.mobile.constants.Constants.UUID_SIZE;
-
 import bg.mobile.extras.entities.Extra;
 import bg.mobile.users.entities.User;
-import java.math.BigDecimal;
-import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-@Data
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Set;
+
+import static bg.mobile.constants.Constants.UUID_SIZE;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "cars")
 public class Car {
@@ -82,5 +72,4 @@ public class Car {
       inverseJoinColumns = {@JoinColumn(name = "car_extra_id", nullable = false,
           foreignKey = @ForeignKey(name = "fk_car_extras_extras"))})
   private Set<Extra> extras;
-
 }
