@@ -14,7 +14,7 @@
     "jquery": "^3.4.1",
     "local-storage": "^2.0.0",
     "material-table": "latest",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "morgan": "^1.10.0",
     "node-sass": "^4.13.0",
     "react": "^16.12.0",
