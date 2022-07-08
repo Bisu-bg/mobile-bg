@@ -13,7 +13,7 @@
     "jquery": "^3.4.1",
     "local-storage": "^2.0.0",
     "material-table": "latest",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "node-sass": "^4.13.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
