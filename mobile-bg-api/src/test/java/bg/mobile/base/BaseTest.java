@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
+import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 
 import java.math.BigDecimal;
 
@@ -20,7 +23,11 @@ import static bg.mobile.cars.entities.GearBox.AUTOMATIC;
 @Transactional
 @SpringBootTest
 @ActiveProfiles("test")
+@Testcontainers
 public abstract class BaseTest {
+
+    private static final DockerImageName imageName = DockerImageName.parse("mysql:8.0.36");
+    private static final MySQLContainer container;
 
     @Autowired
     protected UserService userService;
@@ -33,6 +40,12 @@ public abstract class BaseTest {
 
     @Autowired
     protected ExtraService extraService;
+
+    static {
+        container = (MySQLContainer) new MySQLContainer(imageName)
+                .withReuse(true);
+        container.start();
+    }
 
     protected CarModel buildCar() {
         final UserModel user = new UserModel(null, "Kircata", "1234", "Kiril", "Petkov");

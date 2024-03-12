@@ -6,14 +6,13 @@ import bg.mobile.cars.models.CarModel;
 import bg.mobile.cars.service.CarService;
 import bg.mobile.cars.service.converters.CarConverter;
 import bg.mobile.exceptions.HttpBadRequestException;
-import bg.mobile.extras.service.ExtraService;
-import java.util.List;
-import java.util.Optional;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Log4j2
@@ -53,7 +52,7 @@ public class CarServiceImpl implements CarService {
   public CarModel updateCar(final CarModel model) {
     log.info("Update car BEGIN: {}", model);
 
-    if (!carRepository.existsById(model.getId())) {
+    if (carRepository.getReferenceById(model.getId()).getModel() == null) {
       throw new HttpBadRequestException("Car entity does not exist for id: " + model.getId());
     }
 
