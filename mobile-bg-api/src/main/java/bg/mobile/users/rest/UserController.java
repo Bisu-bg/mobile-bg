@@ -13,16 +13,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserController {
 
-  private final UserService userService;
+    private final UserService userService;
 
-  @PostMapping("/register")
-  public void registerUser(@RequestBody final UserModel user) {
-    userService.registerUser(user);
-  }
+    @PostMapping("/register")
+    public String registerUser(@RequestBody final UserModel user) {
+        try {
+            userService.registerUser(user);
+        } catch (Exception e) {
+            return "There was a problem creating the user";
+        }
+        return "Success";
+    }
 
-  @PostMapping("/login")
-  public LoginResponse loginUser(@RequestBody final LoginRequest request) {
-
-    return userService.loginUser(request.getUsername(), request.getPassword());
-  }
+    @PostMapping("/login")
+    public LoginResponse loginUser(@RequestBody final LoginRequest request) {
+        try {
+            return userService.loginUser(request.getUsername(), request.getPassword());
+        } catch (Exception e) {
+            return LoginResponse.builder().user(null).jwtToken(null).build();
+        }
+    }
 }

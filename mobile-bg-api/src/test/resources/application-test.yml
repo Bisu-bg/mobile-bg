@@ -1,11 +1,17 @@
+DATABASE: 'mysql'
+
 spring:
     datasource:
-        url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-        username: sa
-        password: ''
+        url: jdbc:tc:mysql:8.0.36:///test_database
     jpa:
         hibernate:
             ddl-auto: update
         properties:
             hibernate:
-                dialect: org.hibernate.dialect.H2Dialect
+                dialect: org.hibernate.dialect.MySQL8Dialect
+        open-in-view: false
+
+javax:
+    persistence:
+        lock:
+            timeout: 600000

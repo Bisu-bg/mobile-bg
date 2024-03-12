@@ -1,22 +1,22 @@
 package bg.mobile.cars.service.converters;
 
-import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toSet;
-
 import bg.mobile.cars.entities.Car;
 import bg.mobile.cars.models.CarModel;
 import bg.mobile.extras.entities.Extra;
 import bg.mobile.extras.service.ExtraService;
 import bg.mobile.users.service.converters.UserConverter;
 import com.mysql.cj.util.StringUtils;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 @Component
 @RequiredArgsConstructor
